@@ -5,6 +5,7 @@ import com.example.mongodb.domain.Person;
 import com.example.mongodb.domain.Staff;
 import com.example.mongodb.repo.DepartmentRepository;
 import com.example.mongodb.repo.StaffRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -36,21 +37,21 @@ public class MongoDbApplication implements CommandLineRunner {
     @Override
     public void run(String... strings) {
         //Staff
-        Staff deanJones = staffRepository.save(new Staff(1, new Person("John", "Jones")));
-        Staff deanMartin = staffRepository.save(new Staff(2, new Person("Matthew", "Martin")));
-        staffRepository.save(new Staff(3, new Person("James", "Brown")));
-        staffRepository.save(new Staff(4, new Person("Judy", "Miller")));
-        staffRepository.save(new Staff(5, new Person("James", "Davis")));
-        staffRepository.save(new Staff(6, new Person("Allison", "Moore")));
-        staffRepository.save(new Staff(7, new Person("Tom", "Thomas")));
-        staffRepository.save(new Staff(8, new Person("Graham", "Green")));
-        staffRepository.save(new Staff(9, new Person("Whitney", "White")));
-        staffRepository.save(new Staff(10, new Person("Jack", "Black")));
-        staffRepository.save(new Staff(11, new Person("Queen", "King")));
+        Staff deanJones = staffRepository.save(new Staff(ObjectId.get(), new Person("John", "Jones")));
+        Staff deanMartin = staffRepository.save(new Staff(ObjectId.get(), new Person("Matthew", "Martin")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("James", "Brown")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("Judy", "Miller")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("James", "Davis")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("Allison", "Moore")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("Tom", "Thomas")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("Graham", "Green")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("Whitney", "White")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("Jack", "Black")));
+        staffRepository.save(new Staff(ObjectId.get(), new Person("Queen", "King")));
 
         //Departments
-        departmentRepository.save(new Department(100, "Humanities", deanJones));
-        departmentRepository.save(new Department(200, "Natural Sciences", deanMartin));
-        departmentRepository.save(new Department(300, "Social Sciences", deanJones));
+        departmentRepository.save(new Department(ObjectId.get(), "Humanities", deanJones));
+        departmentRepository.save(new Department(ObjectId.get(), "Natural Sciences", deanMartin));
+        departmentRepository.save(new Department(ObjectId.get(), "Social Sciences", deanJones));
     }
 }

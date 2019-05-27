@@ -3,6 +3,7 @@ package com.example.mongodb.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Department {
     @Id
-    private Integer id;
+    private ObjectId _id;
     private String name;
     @DBRef(db = "chair")
     private Staff chair;
