@@ -19,3 +19,5 @@ Now that the app is running, visit http://localhost:8080/staff in order to see a
 To Find a staff member by name
 
 http GET http://localhost:8080/staff/find  {"firstName": "Queen","lastName": "King"}
+
+![Print](https://github.com/diogo-santos/spring-ms-mongodb/blob/master/findByName.png)
