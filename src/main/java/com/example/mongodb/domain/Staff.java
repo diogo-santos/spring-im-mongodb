@@ -15,4 +15,8 @@ public class Staff {
     @Id
     private ObjectId _id;
     private Person member;
+
+    public String get_id() {
+        return _id.toHexString();
+    }
 }

@@ -18,4 +18,8 @@ public class Department {
     private String name;
     @DBRef(db = "chair")
     private Staff chair;
+
+    public String get_id() {
+        return _id.toHexString();
+    }
 }
