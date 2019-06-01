@@ -1,6 +1,6 @@
 package com.example.mongodb.repo;
 
-import com.example.mongodb.MongoDbApplication;
+import com.example.mongodb.SpringMongoDbApplication;
 import com.example.mongodb.domain.Person;
 import com.example.mongodb.domain.Staff;
 import org.junit.Test;
@@ -20,18 +20,18 @@ import static org.assertj.core.api.Assertions.assertThat;
  * StaffRepositoryTest.
  *
  * Staffs persisted to Fongo in-Memory database at startup.
- * @see MongoDbApplication
+ * @see SpringMongoDbApplication
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StaffRepositoryTest {
     @Autowired
-    private StaffRepository staffRepository;
+    private StaffRepository repo;
 
     @Test
     public void findAllWhenSortAscByLastNameTest() {
         System.out.println("\nFind all staff members, sort alphabetically by last name");
-        Iterable<Staff> members = staffRepository.findAll(new Sort(Sort.Direction.ASC, "member.lastName"));
+        Iterable<Staff> members = repo.findAll(new Sort(Sort.Direction.ASC, "member.lastName"));
         members.forEach(System.out::println);
         assertThat(members).extracting(Staff::getMember).first().isEqualTo(new Person("Jack", "Black"));
     }
@@ -39,7 +39,7 @@ public class StaffRepositoryTest {
     @Test
     public void givenPageSizeThenReturnMembersAndSortAscByLastNameTest() {
         System.out.println("\nFind first 5 Staff members, sort alphabetically by last name");
-        Page<Staff> members = staffRepository.findAll(new PageRequest(0, 5, new Sort(Sort.Direction.ASC, "member.lastName")));
+        Page<Staff> members = repo.findAll(new PageRequest(0, 5, new Sort(Sort.Direction.ASC, "member.lastName")));
         members.forEach(System.out::println);
         assertThat(members).hasSize(5);
         assertThat(members).extracting(Staff::getMember).last().isEqualTo(new Person("John", "Jones"));
@@ -49,7 +49,7 @@ public class StaffRepositoryTest {
     public void givenNameThenFindByFirstNameTest() {
         //@Query with JSON query string
         System.out.println("\nFind all staff members with first name Queen");
-        List<Staff> members = staffRepository.findByFirstName("Queen");
+        List<Staff> members = repo.findByFirstName("Queen");
         members.forEach(System.out::println);
         assertThat(members).extracting(Staff::getMember).contains(new Person("Queen", "King"));
     }
@@ -57,7 +57,7 @@ public class StaffRepositoryTest {
     @Test
     public void givenNameThenFindByMemberLastNameTest() {
         System.out.println("\nFind all staff members with last name Brown");
-        List<Staff> members = staffRepository.findByMemberLastName("Brown");
+        List<Staff> members = repo.findByMemberLastName("Brown");
         members.forEach(System.out::println);
         assertThat(members).extracting(Staff::getMember).contains(new Person("James", "Brown"));
     }

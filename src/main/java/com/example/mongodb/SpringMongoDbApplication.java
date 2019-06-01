@@ -19,19 +19,19 @@ import org.springframework.context.annotation.Import;
  */
 @SpringBootApplication
 @Import(InMemoryMongoConfig.class)
-public class MongoDbApplication implements CommandLineRunner {
+public class SpringMongoDbApplication implements CommandLineRunner {
     @Autowired
     private StaffRepository staffRepository;
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    public MongoDbApplication(StaffRepository staffRepository, DepartmentRepository departmentRepository) {
+    public SpringMongoDbApplication(StaffRepository staffRepository, DepartmentRepository departmentRepository) {
         this.staffRepository = staffRepository;
         this.departmentRepository = departmentRepository;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(MongoDbApplication.class, args);
+        SpringApplication.run(SpringMongoDbApplication.class, args);
     }
 
     @Override

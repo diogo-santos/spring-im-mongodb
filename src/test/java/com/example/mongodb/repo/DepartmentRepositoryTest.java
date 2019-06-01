@@ -1,6 +1,6 @@
 package com.example.mongodb.repo;
 
-import com.example.mongodb.MongoDbApplication;
+import com.example.mongodb.SpringMongoDbApplication;
 import com.example.mongodb.domain.Department;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,18 +17,18 @@ import static org.assertj.core.api.Assertions.assertThat;
  * DepartmentRepositoryTest.
  *
  * Departments persisted to Fongo in-Memory database at startup.
- * @see MongoDbApplication
+ * @see SpringMongoDbApplication
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DepartmentRepositoryTest {
 	@Autowired
-    private DepartmentRepository departmentRepository;
+    private DepartmentRepository repo;
 
     @Test
     public void findAllWhenSortAscByNameTest() {
         System.out.println("\nFind all Departments, sort alphabetically by name");
-        List<Department> departments = departmentRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
+        List<Department> departments = repo.findAll(new Sort(Sort.Direction.ASC, "name"));
         departments.forEach(System.out::println);
         assertThat(departments).extracting(Department::getName).first().isEqualTo("Humanities");
     }
@@ -36,7 +36,7 @@ public class DepartmentRepositoryTest {
     @Test
     public void givenExactNameThenFindByNameTest() {
         System.out.println("\nFind Department with the exact name 'Natural Sciences' \n");
-        Department department = departmentRepository.findByName("Natural Sciences");
+        Department department = repo.findByName("Natural Sciences");
         assertThat(department).isNotNull();
         assertThat(department.getName()).isEqualTo("Natural Sciences");
     }
@@ -45,7 +45,7 @@ public class DepartmentRepositoryTest {
     public void givenNameEndingThenFindByPatternTest() {
         //@Query with JSON query string that accepts regular expression as a parameter
         System.out.println("\nFind all Departments with name ending in Sciences");
-        List<Department> departments = departmentRepository.findNameByPattern(".[Ss]ciences");
+        List<Department> departments = repo.findNameByPattern(".[Ss]ciences");
         departments.forEach(System.out::println);
         assertThat(departments).extracting(Department::getName).contains("Natural Sciences", "Social Sciences");
     }

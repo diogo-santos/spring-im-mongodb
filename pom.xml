@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example.mongodb</groupId>
-	<artifactId>spring-ms-mongodb</artifactId>
+	<artifactId>spring-im-mongodb</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>spring-ms-mongodb</name>
-	<description>Demo project for RESTful Spring Boot with MongoDb</description>
+	<name>spring-im-mongodb</name>
+	<description>Demo project for Spring Boot with InMemory MongoDb</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
